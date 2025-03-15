@@ -1,8 +1,8 @@
-# Welcome to the maintained Geometry Dash Unrated Demons List repo!
+# Welcome to WhirlGDPS Demonlist repo!
 
 # Website Disclaimer
 
-This website was made using the TSL template, so credits to their coding team.
+This website was made using the UDL template, so credits to their coding team.
 
 
 # FAQ

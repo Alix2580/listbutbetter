@@ -1,37 +1,77 @@
 [
     {
         "role": "owner",
-        "name": "Lucidium",
-        "link": "https://www.youtube.com/@LucidiumGD"
+        "name": "Skoe",
+        "link": "nah"
     },
     {
         "role": "admin",
-        "name": "KirbyX152",
-        "link": "https://www.youtube.com/channel/UC3bT08NPMRLhqc8msXU7uzQ"
+        "name": "Kubix",
+        "link": "nah"
     },
     {
         "role": "admin",
-        "name": "Marcy",
-        "link": "https://www.youtube.com/channel/UCiJHQq5gF6t2yh4V59DU3jg"
+        "name": "mathey",
+        "link": "nah"
     },
     {
         "role": "helper",
-        "name": "fusion425",
-        "link": "https://www.youtube.com/@fusion425"
+        "name": "bal",
+        "link": "nah"
     },
-    {
+      {
         "role": "helper",
-        "name": "ItzMira",
-        "link": "https://www.youtube.com/@ItzMiraGD"
+        "name": "Skylar",
+        "link": "nah"
     },
-    {
+      {
         "role": "helper",
-        "name": "Padahk",
-        "link": "https://www.youtube.com/channel/UCab6v0QABvh4ca5EJrlgH9A"
+        "name": "Rae",
+        "link": "nah"
+    },
+  {
+        "role": "helper",
+        "name": "R3SERT1",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "kal",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "gamecheese",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "Hexy",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "Xan",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "yeeee",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "swifticat",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "Firelia",
+        "link": "nah"
     },
     {
         "role": "dev",
-        "name": "Prometheus",
-        "link": "https://www.youtube.com/c/PrometheusAlt"
+        "name": "doom",
+        "link": "nah"
     }
 ]

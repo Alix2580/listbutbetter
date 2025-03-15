@@ -1,0 +1,19 @@
+{
+    "id": 1718,
+    "name": "Xan Circles",
+    "author": "Xanv2",
+    "creators": [],
+    "verifier": "mathey",
+    "verification": "https://www.youtube.com/watch?v=4dXq37oEz7g",
+    "percentToQualify": 100,
+    "password": "Copyable",
+    "records":  [
+         {
+			"user": "Aquatic",
+			"link": "https://youtu.be/_xxdD5x_Jyg?si=jlAHAt5OMpasAwg2",
+			"percent": 100,
+			"hz": 144
+		}
+    ]
+}
+

@@ -1,10 +1,10 @@
 {
-    "id": 26681070,
-    "name": "Sonic Wave",
-    "author": "lSunix",
-    "creators": ["Cyclic"],
-    "verifier": "lSunix",
-    "verification": "https://www.youtube.com/watch?v=GpXTwPgweAk",
+    "id": 10565740,
+    "name": "Bloodbath",
+    "author": "Riot",
+    "creators": ["Michigun","Riot","Asonicmen","weoweteo","Evasium","Etzer","Giron","Crack","Havok","Vermillion","GgB0y"],
+    "verifier": "Riot",
+    "verification": "https://youtu.be/twTw4fjT0ik",
     "percentToQualify": 100,
     "records": [],
     "tags": ["Benchmark"]

@@ -1,0 +1,24 @@
+{
+    "id": 1615,
+    "name": "DISCONNECT",
+    "author": "mathey",
+    "creators": ["mathey","Furrious"],
+    "verifier": "mathey",
+    "verification": "https://youtu.be/kcBs_2EJ2dc?si=y5rTRc-jXfvepH_y",
+    "percentToQualify": 48,
+    "password": "Copyable",
+    "records": [
+         {
+			"user": "doom",
+			"link": "https://youtu.be/ZpdAHSRoCEQ",
+			"percent": 100,
+			"hz": 240
+		},
+        {
+			"user": "syrcx",
+			"link": "https://youtu.be/dQ_9aVN2Wi4",
+			"percent": 100,
+			"hz": 240
+		}
+    ]
+}

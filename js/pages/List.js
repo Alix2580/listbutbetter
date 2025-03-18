@@ -187,6 +187,11 @@ export default {
                 this.errors.push('Failed to load list editors.');
             }
         }
+		for(this.i = this.list.length - 1; this.i >= 0; this.i--){
+			if(this.list[this.i][1] !== null){
+				this.selected = this.i;
+			}
+		}
 
         this.loading = false;
     },

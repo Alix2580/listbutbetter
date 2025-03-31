@@ -105,4 +105,11 @@ input[type="checkbox"] {
     height: auto;
     margin-right: 0.5rem; /* Space between flag and username */
     vertical-align: middle; /* Ensure flag aligns well with text */
+    display: inline-block; /* Ensures flag aligns horizontally */
+}
+
+.user {
+    display: flex; /* Make the user container a flex container */
+    align-items: center; /* Vertically align content in the center */
+    gap: 0.5rem; /* Space between flag and player name */
 }

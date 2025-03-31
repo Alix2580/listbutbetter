@@ -68,9 +68,18 @@ export async function fetchLeaderboard() {
 
     const scoreMap = {};
     const errs = [];
+    
+    // Fetch country data
+    let countryData = {};
+    try {
+        const countryResult = await fetch(`${dir}/_countries.json`);
+        countryData = await countryResult.json();
+    } catch {
+        errs.push("Failed to load country data.");
+    }
 
     if (list === null) {
-        return [null, ["Failed to load list."]];
+        return [null, ["Failed to load list."]]; // If list loading fails
     }
     let listbans = null;
     try {
@@ -151,7 +160,7 @@ export async function fetchLeaderboard() {
         });
     });
 
-    // Wrap in extra Object containing the user and total score
+    // Wrap in extra Object containing the user, total score, and country
     const res = Object.entries(scoreMap).map(([user, scores]) => {
         const { verified, completed, progressed } = scores;
         const total = [verified, completed, progressed]
@@ -161,6 +170,7 @@ export async function fetchLeaderboard() {
         return {
             user,
             total: round(total),
+            country: countryData[user] || 'US', // Default to 'US' if no country found
             ...scores,
         };
     });

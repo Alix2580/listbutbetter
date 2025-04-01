@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/qeVgO0m5v6k?si=vRD96rINr5tNLW7O",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+          {
+			"user": "Skoe",
+			"link": "https://youtu.be/czbwLXphX4I",
+			"percent": 100,
+			"hz": 480
+		}
+    ]
 }

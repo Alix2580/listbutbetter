@@ -25,6 +25,12 @@
 			"link": "https://www.youtube.com/watch?v=2z8EJFnrN84",
 			"percent": 100,
 			"hz": 360
+		},
+	      {
+			"user": "Skoe",
+			"link": "https://youtu.be/czbwLXphX4I",
+			"percent": 100,
+			"hz": 480
 		}
 	]
 }

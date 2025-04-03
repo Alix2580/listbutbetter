@@ -113,3 +113,10 @@ input[type="checkbox"] {
     align-items: center; /* Vertically align content in the center */
     gap: 0.5rem; /* Space between flag and player name */
 }
+
+.flag-icon {
+    border-radius: 5px; /* Adjust the value to make it more or less rounded */
+    width: 24px; /* Ensure the flags are the right size */
+    height: 16px;
+    display: inline-block;
+}

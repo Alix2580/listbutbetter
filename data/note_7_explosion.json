@@ -13,6 +13,12 @@
 			"link": "https://www.youtube.com/watch?v=utTYjevYrRk",
 			"percent": 100,
 			"hz": 240
-		}
+		},
+	     {
+            "user": "Skoe",
+            "link": "https://www.youtube.com/watch?v=M60tuTTBsO0",
+            "percent": 100,
+            "hz": 240
+        }
     ]
 }

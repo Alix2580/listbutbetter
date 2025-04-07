@@ -14,11 +14,17 @@
 			"percent": 100,
 			"hz": 240
 		},
+	       {
+            "user": "Firelia",
+            "link": "https://youtu.be/sCEP3J0ntYI",
+            "percent": 100,
+            "hz": 240
+        },
 	     {
             "user": "Skoe",
             "link": "https://www.youtube.com/watch?v=M60tuTTBsO0",
             "percent": 100,
-            "hz": 240
+            "hz": 480
         }
     ]
 }

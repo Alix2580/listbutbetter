@@ -19,7 +19,13 @@
 			"link": "https://youtu.be/dQ_9aVN2Wi4",
 			"percent": 100,
 			"hz": 240
-		}
+		},
+	      {
+            "user": "Skoe",
+            "link": "https://youtu.be/QkZSM9UVW0s",
+            "percent": 100,
+            "hz": 480
+        }
     ],
 		"tags": ["Former Top 1"]
 }

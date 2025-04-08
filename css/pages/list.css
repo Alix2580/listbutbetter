@@ -134,3 +134,17 @@
     background-color: #5d5d5d;
     padding: 7px;
 }
+.gold {
+  color: #FFD700; /* Gold */
+  font-weight: bold;
+}
+
+.silver {
+  color: #C0C0C0; /* Silver */
+  font-weight: bold;
+}
+
+.bronze {
+  color: #CD7F32; /* Bronze */
+  font-weight: bold;
+}

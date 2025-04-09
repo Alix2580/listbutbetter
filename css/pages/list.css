@@ -134,32 +134,3 @@
     background-color: #5d5d5d;
     padding: 7px;
 }
-.sparkle {
-  position: relative;
-}
-
-.sparkle::after {
-  content: '';
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 14px;
-  height: 14px;
-  background-image: radial-gradient(circle, #fff 40%, transparent 70%);
-  animation: sparkle 1.5s infinite ease-in-out;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.8;
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.4) rotate(45deg);
-    opacity: 1;
-  }
-}
-

@@ -1,214 +1,136 @@
-import { store } from '../main.js';
-import { embed } from '../util.js';
-import { score } from '../score.js';
-import { fetchEditors, fetchList } from '../content.js';
-
-import Spinner from '../components/Spinner.js';
-import LevelAuthors from '../components/List/LevelAuthors.js';
-
-const roleIconMap = {
-    owner: 'crown',
-    admin: 'user-gear',
-    helper: 'user-shield',
-    dev: 'code',
-    trial: 'user-lock',
-};
-
-function getRankColor(rank) {
-    if (rank === 1) return 'gold';
-    if (rank === 2) return 'silver';
-    if (rank === 3) return '#cd7f32'; // bronze
-    if (rank > 100) return 'darkgrey';
-    return undefined;
-}
-
-export default {
-    components: { Spinner, LevelAuthors },
-    template: `
-        <main v-if="loading">
-            <Spinner></Spinner>
-        </main>
-        <main v-else class="page-list">
-            <div class="list-container">
-                <table class="list" v-if="list">
-                    <tr v-for="([err, rank, level], i) in list">
-                        <td class="rank">
-                            <p v-if="rank === null" class="type-label-lg">&mdash;</p>
-                            <p
-                                v-else
-                                class="type-label-lg"
-                                :style="{ color: getRankColor(rank) }"
-                            >
-                                #{{ rank }}
-                            </p>
-                        </td>
-                        <td class="level" :class="{ 'active': selected == i, 'error': err !== null }">
-                            <button @click="selected = i">
-                                <span
-                                    class="type-label-lg"
-                                    :style="{ color: getRankColor(rank) }"
-                                >
-                                    {{ level?.name || \`Error (\${err}.json)\` }}
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="level-container">
-                <div class="level" v-if="level">
-                    <h1>{{ level.name }}</h1>
-                    <LevelAuthors :author="level.author" :creators="level.creators" :verifier="level.verifier"></LevelAuthors>
-                    <div style="display:flex">
-                        <div v-for="tag in level.tags" class="tag">{{tag}}</div>
-                    </div>
-                    <div v-if="level.showcase" class="tabs">
-                        <button class="tab type-label-lg" :class="{selected: !toggledShowcase}" @click="toggledShowcase = false">
-                            <span class="type-label-lg">Verification</span>
-                        </button>
-                        <button class="tab" :class="{selected: toggledShowcase}" @click="toggledShowcase = true">
-                            <span class="type-label-lg">Showcase</span>
-                        </button>
-                    </div>
-                    <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
-                    <ul class="stats">
-                        <li>
-                            <div class="type-title-sm">Points when completed</div>
-                            <p>{{ score(level.rank, 100, level.percentToQualify, list.filter((x)=>x[2]["rank"]!==null).length) }}</p>
-                        </li>
-                        <li>
-                            <div class="type-title-sm">ID</div>
-                            <p>{{ level.id }}</p>
-                        </li>
-                        <li>
-                            <div class="type-title-sm">Password</div>
-                            <p>{{ level.password || 'Free to copy' }}</p>
-                        </li>
-                    </ul>
-                    <ul stats="stats" v-if="level.song">
-                        <li>
-                            <div class="type-title-sm">Song</div><br>
-                            <p><a :href="(level.song===undefined)?'#':level.song" :style="{'text-decoration':(level.song===undefined)?'none':'underline'}">Link to song</a></p>
-                        </li>
-                    </ul>
-                    <h2>Records</h2>
-                    <p v-if="level.rank === null">This level does not accept records.</p>
-                    <p v-else-if="level.rank <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <p v-else-if="level.rank <= 150"><strong>100%</strong> or better to qualify</p>
-                    <p v-else>This level has fallen to legacy, but still accepts completion records.</p>
-                    <table class="records">
-                        <tr v-for="record in level.records" class="record">
-                            <td class="percent">
-                                <p>{{ record.percent }}%</p>
-                            </td>
-                            <td class="user">
-                                <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
-                            </td>
-                            <td class="mobile">
-                                <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div v-else class="level" style="height: 100%; justify-content: center; align-items: center;">
-                    <p>(ノಠ益ಠ)ノ彡┻━┻</p>
-                </div>
-            </div>
-            <div class="meta-container">
-                <div class="meta">
-                    <div class="errors" v-show="errors.length > 0">
-                        <p class="error" v-for="error of errors">{{ error }}</p>
-                    </div>
-                    <div class="og">
-                        <p class="type-label-md">Website layout on <a href="https://tsl.pages.dev/" target="_blank">TheShittyList</a>.</p>
-                    </div>
-                    <template v-if="editors">
-                        <h3>List Editors</h3>
-                        <ol class="editors">
-                            <li v-for="editor in editors">
-                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
-                                <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
-                                <p v-else>{{ editor.name }}</p>
-                            </li>
-                        </ol>
-                    </template>
-                    <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard
-                    </p>
-                </div>
-            </div>
-        </main>
-    `,
-    data: () => ({
-        list: [],
-        editors: [],
-        loading: true,
-        selected: 0,
-        errors: [],
-        listlevels: 0,
-        roleIconMap,
-        store,
-        toggledShowcase: false,
-    }),
-    computed: {
-        level() {
-            return this.list && this.list[this.selected] && this.list[this.selected][2];
-        },
-        video() {
-            if (!this.level.showcase) {
-                return embed(this.level.verification);
-            }
-
-            return embed(
-                this.toggledShowcase
-                    ? this.level.showcase
-                    : this.level.verification
-            );
-        },
-    },
-    async mounted() {
-        this.list = await fetchList();
-        this.editors = await fetchEditors();
-
-        if (!this.list) {
-            this.errors = [
-                'Failed to load list. Retry in a few minutes or notify list staff.',
-            ];
-        } else {
-            this.errors.push(
-                ...this.list
-                    .filter(([err]) => err)
-                    .map(([err]) => `Failed to load level. (${err}.json)`),
-            );
-            if (!this.editors) {
-                this.errors.push('Failed to load list editors.');
-            }
-        }
-
-        this.loading = false;
-    },
-    methods: {
-        embed,
-        score,
-        getRankColor,
-    },
-};
+.page-list .list-container,
+ .page-list .level-container,
+ .page-list .meta-container {
+     padding-block: 2rem;
+ }
+ .page-list .list-container {
+     padding-inline: 1rem;
+ }
+ .page-list .meta-container {
+     padding-right: 2rem;
+ }
+ 
+ .page-list .list {
+     table-layout: auto;
+ }
+ .page-list .list .rank {
+     text-align: end;
+     padding-right: 1rem;
+ }
+ .page-list .list .level {
+     width: 100%;
+ }
+ .page-list .list .level button {
+     background-color: var(--color-background);
+     color: var(--color-on-background);
+     border: none;
+     border-radius: 0.5rem;
+     padding: 1rem;
+     text-align: start;
+     word-break: normal;
+     overflow-wrap: anywhere;
+     cursor: pointer;
+ }
+ .page-list .list .level.error button {
+     color: var(--color-error);
+     cursor: not-allowed;
+     text-decoration: line-through;
+ }
+ .page-list .list .level button:hover {
+     background-color: var(--color-background-hover);
+     color: var(--color-on-background-hover);
+ }
+ .page-list .list .level.active button {
+     background-color: var(--color-primary);
+     color: var(--color-on-primary);
+ }
+ .page-list .level-container .level {
+     display: flex;
+     flex-direction: column;
+     gap: 2rem;
+     padding-right: 2rem;
+     max-width: 48rem;
+ }
+ .page-list .level-container .level .level-authors {
+     display: grid;
+     grid-template-columns: max-content 1fr;
+     grid-auto-rows: max-content;
+     gap: 1rem;
+ }
+ .page-list .level-container .level .video {
+     aspect-ratio: 16/9;
+ }
+ .page-list .level-container .level .stats {
+     display: flex;
+     justify-content: space-evenly;
+     text-align: center;
+     gap: 2rem;
+ }
+ .page-list .level-container .level .stats li {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 1rem;
+ }
+ .page-list .level-container .level .records {
+     table-layout: fixed;
+ }
+ .page-list .level-container .level .records tr td:not(:last-child) {
+     padding-right: 1rem;
+ }
+ .page-list .level-container .level .records .percent,
+ .page-list .level-container .level .records .user,
+ .page-list .level-container .level .records .hz {
+     padding-block: 1rem;
+ }
+ .page-list .level-container .level .records .user {
+     width: 100%;
+ }
+ .page-list .level-container .level .records .percent,
+ .page-list .level-container .level .records .hz {
+     text-align: end;
+ }
+ .page-list .meta-container .og a:hover,
+ .page-list .level-container .level .records a:hover {
+     text-decoration: underline;
+ }
+ .page-list .meta {
+     display: flex;
+     flex-direction: column;
+     gap: 2rem;
+ }
+ .page-list .meta .errors {
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+ }
+ .page-list .meta .errors .error {
+     padding: 1rem;
+     background-color: var(--color-error);
+     color: var(--color-on-error);
+     border-radius: 0.5rem;
+ }
+ .page-list .meta .editors {
+     display: flex;
+     flex-direction: column;
+     gap: 0.75rem;
+ }
+ .page-list .meta .editors li {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+ }
+ .page-list .meta .editors li img {
+     height: 1.25rem;
+ }
+ .page-list .meta .editors li a:hover {
+     text-decoration: underline;
+ }
+ .tag {
+     font-family: "Lexend Deca", sans-serif;
+     display:block;
+     border-radius: 14px;
+     color: white;
+     background-color: #5d5d5d;
+     padding: 7px;
+ }

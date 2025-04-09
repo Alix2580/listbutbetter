@@ -134,3 +134,35 @@
      background-color: #5d5d5d;
      padding: 7px;
  }
+.search-bar-container {
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 15px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light border */
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #007bff; /* Blue border on focus */
+}
+
+.no-results {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Adjusting the list container position if needed */
+.list-container {
+    margin-top: 20px;
+}
+

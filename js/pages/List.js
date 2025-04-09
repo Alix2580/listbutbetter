@@ -24,21 +24,21 @@ function getRankColor(rank) {
 
 export default {
     components: { Spinner, LevelAuthors },
-    template: `
+    template: 
         <main v-if="loading">
             <Spinner></Spinner>
         </main>
         <main v-else class="page-list">
-            <div class="search-bar-container">
+            <div class="list-container">
                 <input
                     v-model="searchQuery"
                     placeholder="Search levels..."
-                    class="search-bar"
+                    class="type-label-lg"
+                    style="margin-bottom: 1rem; padding: 0.5rem; width: 100%; font-size: 1rem;"
                 />
-            </div>
-            <div class="list-container">
+
                 <table class="list" v-if="filteredList.length">
-                    <tr v-for="([err, rank, level], i) in filteredList" :key="level.id">
+                    <tr v-for="([err, rank, level], i) in filteredList">
                         <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
@@ -55,7 +55,7 @@ export default {
                                     class="type-label-lg"
                                     :style="{ color: getRankColor(rank) }"
                                 >
-                                    {{ level?.name || \`Error (\${err}.json)\` }}
+                                    {{ level?.name || \Error (\${err}.json)\ }}
                                 </span>
                             </button>
                         </td>
@@ -113,7 +113,7 @@ export default {
                                 <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
                             </td>
                             <td class="mobile">
-                                <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
+                                <img v-if="record.mobile" :src="\/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\" alt="Mobile">
                             </td>
                         </tr>
                     </table>
@@ -123,7 +123,7 @@ export default {
                 </div>
             </div>
         </main>
-    `,
+    ,
     data: () => ({
         list: [],
         editors: [],
@@ -170,7 +170,7 @@ export default {
             this.errors.push(
                 ...this.list
                     .filter(([err]) => err)
-                    .map(([err]) => `Failed to load level. (${err}.json)`),
+                    .map(([err]) => Failed to load level. (${err}.json)),
             );
             if (!this.editors) {
                 this.errors.push('Failed to load list editors.');

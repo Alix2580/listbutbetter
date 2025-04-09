@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/VqGn7XfqMBM",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+          {
+			"user": "Firelia",
+			"link": "youtu.be/tYjN4vyPV5A",
+			"percent": 100,
+			"hz": 240
+		}
+    ]
 }

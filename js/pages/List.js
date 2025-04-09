@@ -19,7 +19,17 @@ function getRankColor(rank) {
     if (rank === 2) return 'silver';
     if (rank === 3) return '#cd7f32'; // bronze
     if (rank > 100) return 'darkgrey';
-    return undefined;
+
+    // For ranks 51-100, we compute an in-between color
+    if (rank >= 51 && rank <= 100) {
+        const ratio = (rank - 51) / (100 - 51);  // Calculate a ratio between 0 (white) and 1 (dark gray)
+        const r = Math.round(255 - (169 - 255) * ratio);  // Interpolate red channel
+        const g = Math.round(255 - (169 - 255) * ratio);  // Interpolate green channel
+        const b = Math.round(255 - (169 - 255) * ratio);  // Interpolate blue channel
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    return 'white';  // Default color for undefined ranks
 }
 
 export default {
@@ -112,48 +122,6 @@ export default {
                 </div>
                 <div v-else class="level" style="height: 100%; justify-content: center; align-items: center;">
                     <p>(ノಠ益ಠ)ノ彡┻━┻</p>
-                </div>
-            </div>
-            <div class="meta-container">
-                <div class="meta">
-                    <div class="errors" v-show="errors.length > 0">
-                        <p class="error" v-for="error of errors">{{ error }}</p>
-                    </div>
-                    <div class="og">
-                        <p class="type-label-md">Website layout on <a href="https://tsl.pages.dev/" target="_blank">TheShittyList</a>.</p>
-                    </div>
-                    <template v-if="editors">
-                        <h3>List Editors</h3>
-                        <ol class="editors">
-                            <li v-for="editor in editors">
-                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
-                                <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
-                                <p v-else>{{ editor.name }}</p>
-                            </li>
-                        </ol>
-                    </template>
-                    <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard
-                    </p>
                 </div>
             </div>
         </main>

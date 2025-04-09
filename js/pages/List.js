@@ -29,16 +29,16 @@ export default {
             <Spinner></Spinner>
         </main>
         <main v-else class="page-list">
-            <div class="list-container">
+            <div class="search-bar-container">
                 <input
                     v-model="searchQuery"
                     placeholder="Search levels..."
-                    class="type-label-lg"
-                    style="margin-bottom: 1rem; padding: 0.5rem; width: 100%; font-size: 1rem;"
+                    class="search-bar"
                 />
-
+            </div>
+            <div class="list-container">
                 <table class="list" v-if="filteredList.length">
-                    <tr v-for="([err, rank, level], i) in filteredList">
+                    <tr v-for="([err, rank, level], i) in filteredList" :key="level.id">
                         <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p

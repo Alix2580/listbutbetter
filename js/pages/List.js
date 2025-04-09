@@ -32,7 +32,7 @@ export default {
             <div class="list-container">
                 <table class="list" v-if="list">
                     <tr v-for="([err, rank, level], i) in list">
-                        <td class="rank">
+                        <td class="rank" :class="{ sparkle: rank === 1 }">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
                                 v-else

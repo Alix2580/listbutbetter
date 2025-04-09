@@ -1,3 +1,5 @@
+could you add the update to the vue template in this entire script?
+
 import { store } from '../main.js';
 import { embed } from '../util.js';
 import { score } from '../score.js';
@@ -32,7 +34,7 @@ export default {
             <div class="list-container">
                 <table class="list" v-if="list">
                     <tr v-for="([err, rank, level], i) in list">
-                        <td class="rank" :class="{ sparkle: rank === 1 }">
+                        <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
                                 v-else

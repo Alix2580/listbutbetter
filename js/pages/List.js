@@ -1,5 +1,3 @@
-could you add the update to the vue template in this entire script?
-
 import { store } from '../main.js';
 import { embed } from '../util.js';
 import { score } from '../score.js';
@@ -26,7 +24,7 @@ function getRankColor(rank) {
 
 export default {
     components: { Spinner, LevelAuthors },
-    template: `
+    template: 
         <main v-if="loading">
             <Spinner></Spinner>
         </main>
@@ -50,7 +48,7 @@ export default {
                                     class="type-label-lg"
                                     :style="{ color: getRankColor(rank) }"
                                 >
-                                    {{ level?.name || \`Error (\${err}.json)\` }}
+                                    {{ level?.name || \Error (\${err}.json)\ }}
                                 </span>
                             </button>
                         </td>
@@ -107,7 +105,7 @@ export default {
                                 <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
                             </td>
                             <td class="mobile">
-                                <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
+                                <img v-if="record.mobile" :src="\/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\" alt="Mobile">
                             </td>
                         </tr>
                     </table>
@@ -128,7 +126,7 @@ export default {
                         <h3>List Editors</h3>
                         <ol class="editors">
                             <li v-for="editor in editors">
-                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
+                                <img :src="\/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\" :alt="editor.role">
                                 <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
                                 <p v-else>{{ editor.name }}</p>
                             </li>
@@ -159,7 +157,7 @@ export default {
                 </div>
             </div>
         </main>
-    `,
+    ,
     data: () => ({
         list: [],
         editors: [],
@@ -199,7 +197,7 @@ export default {
             this.errors.push(
                 ...this.list
                     .filter(([err]) => err)
-                    .map(([err]) => `Failed to load level. (${err}.json)`),
+                    .map(([err]) => Failed to load level. (${err}.json)),
             );
             if (!this.editors) {
                 this.errors.push('Failed to load list editors.');

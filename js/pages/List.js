@@ -1,7 +1,7 @@
 import { store } from '../main.js';
 import { embed } from '../util.js';
 import { score } from '../score.js';
-import { fetchEditors, fetchList} from '../content.js';
+import { fetchEditors, fetchList } from '../content.js';
 
 import Spinner from '../components/Spinner.js';
 import LevelAuthors from '../components/List/LevelAuthors.js';
@@ -30,7 +30,12 @@ export default {
                         </td>
                         <td class="level" :class="{ 'active': selected == i, 'error': err !== null }">
                             <button @click="selected = i">
-                                <span class="type-label-lg">{{ level?.name || \`Error (\${err}.json)\` }}</span>
+                                <span
+                                    class="type-label-lg"
+                                    :style="{ color: rank > 100 ? 'darkgrey' : undefined }"
+                                >
+                                    {{ level?.name || \`Error (\${err}.json)\` }}
+                                </span>
                             </button>
                         </td>
                     </tr>
@@ -167,10 +172,9 @@ export default {
         },
     },
     async mounted() {
-        // Hide loading spinner
         this.list = await fetchList();
         this.editors = await fetchEditors();
-        // Error handling
+
         if (!this.list) {
             this.errors = [
                 'Failed to load list. Retry in a few minutes or notify list staff.',
@@ -178,10 +182,8 @@ export default {
         } else {
             this.errors.push(
                 ...this.list
-                    .filter(([err, _, __]) => err)
-                    .map(([err, _, __]) => {
-                        return `Failed to load level. (${err}.json)`;
-                    }),
+                    .filter(([err]) => err)
+                    .map(([err]) => `Failed to load level. (${err}.json)`),
             );
             if (!this.editors) {
                 this.errors.push('Failed to load list editors.');
@@ -195,3 +197,4 @@ export default {
         score,
     },
 };
+

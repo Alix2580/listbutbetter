@@ -14,6 +14,14 @@ const roleIconMap = {
     trial: 'user-lock',
 };
 
+function getRankColor(rank) {
+    if (rank === 1) return 'gold';
+    if (rank === 2) return 'silver';
+    if (rank === 3) return '#cd7f32'; // bronze
+    if (rank > 100) return 'darkgrey';
+    return undefined;
+}
+
 export default {
     components: { Spinner, LevelAuthors },
     template: `
@@ -26,13 +34,19 @@ export default {
                     <tr v-for="([err, rank, level], i) in list">
                         <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
-                            <p v-else class="type-label-lg" :style="{ color: rank > 100 ? 'darkgrey' : undefined }">#{{ rank }}</p>
+                            <p
+                                v-else
+                                class="type-label-lg"
+                                :style="{ color: getRankColor(rank) }"
+                            >
+                                #{{ rank }}
+                            </p>
                         </td>
                         <td class="level" :class="{ 'active': selected == i, 'error': err !== null }">
                             <button @click="selected = i">
                                 <span
                                     class="type-label-lg"
-                                    :style="{ color: rank > 100 ? 'darkgrey' : undefined }"
+                                    :style="{ color: getRankColor(rank) }"
                                 >
                                     {{ level?.name || \`Error (\${err}.json)\` }}
                                 </span>
@@ -195,6 +209,6 @@ export default {
     methods: {
         embed,
         score,
+        getRankColor,
     },
 };
-

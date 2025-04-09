@@ -30,8 +30,15 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <table class="list" v-if="list">
-                    <tr v-for="([err, rank, level], i) in list">
+                <input
+                    v-model="searchQuery"
+                    placeholder="Search levels..."
+                    class="type-label-lg"
+                    style="margin-bottom: 1rem; padding: 0.5rem; width: 100%; font-size: 1rem;"
+                />
+
+                <table class="list" v-if="filteredList.length">
+                    <tr v-for="([err, rank, level], i) in filteredList">
                         <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
@@ -43,7 +50,7 @@ export default {
                             </p>
                         </td>
                         <td class="level" :class="{ 'active': selected == i, 'error': err !== null }">
-                            <button @click="selected = i">
+                            <button @click="selectLevel(level)">
                                 <span
                                     class="type-label-lg"
                                     :style="{ color: getRankColor(rank) }"
@@ -54,6 +61,7 @@ export default {
                         </td>
                     </tr>
                 </table>
+                <p v-else class="type-label-lg">No levels found.</p>
             </div>
             <div class="level-container">
                 <div class="level" v-if="level">
@@ -114,48 +122,6 @@ export default {
                     <p>(ノಠ益ಠ)ノ彡┻━┻</p>
                 </div>
             </div>
-            <div class="meta-container">
-                <div class="meta">
-                    <div class="errors" v-show="errors.length > 0">
-                        <p class="error" v-for="error of errors">{{ error }}</p>
-                    </div>
-                    <div class="og">
-                        <p class="type-label-md">Website layout on <a href="https://tsl.pages.dev/" target="_blank">TheShittyList</a>.</p>
-                    </div>
-                    <template v-if="editors">
-                        <h3>List Editors</h3>
-                        <ol class="editors">
-                            <li v-for="editor in editors">
-                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
-                                <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
-                                <p v-else>{{ editor.name }}</p>
-                            </li>
-                        </ol>
-                    </template>
-                    <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard
-                    </p>
-                </div>
-            </div>
         </main>
     `,
     data: () => ({
@@ -168,6 +134,7 @@ export default {
         roleIconMap,
         store,
         toggledShowcase: false,
+        searchQuery: '',
     }),
     computed: {
         level() {
@@ -184,6 +151,12 @@ export default {
                     : this.level.verification
             );
         },
+        filteredList() {
+            const query = this.searchQuery.toLowerCase();
+            return this.list.filter(([err, rank, level]) => {
+                return level?.name?.toLowerCase().includes(query);
+            });
+        }
     },
     async mounted() {
         this.list = await fetchList();
@@ -210,5 +183,8 @@ export default {
         embed,
         score,
         getRankColor,
+        selectLevel(level) {
+            this.selected = this.list.findIndex(x => x[2].name === level.name);
+        }
     },
 };

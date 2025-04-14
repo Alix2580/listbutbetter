@@ -3,11 +3,17 @@
     "name": "Thanatos",
     "author": "Skylar",
     "creators": [],
-    "verifier": "Mathey",
-    "verification": "https://youtu.be/yCq3UyIUmRw",
+    "verifier": "Skylar",
+    "verification": "https://youtu.be/tiHRqu43t00?si=wj4O46eKuA1ndtxC",
     "percentToQualify": 100,
     "password": "Copyable",
     "records": [
+	    {
+			"user": "Mathey",
+			"link": "https://youtu.be/yCq3UyIUmRw",
+			"percent": 100,
+			"hz": 144
+		},
          {
 			"user": "Furrious",
 			"link": "https://www.youtube.com/watch?v=8zZPV3AWlYA",

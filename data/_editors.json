@@ -70,6 +70,11 @@
         "link": "nah"
     },
     {
+        "role": "helper",
+        "name": "Krieger",
+        "link": "nah"
+    },
+    {
         "role": "dev",
         "name": "doom",
         "link": "nah"

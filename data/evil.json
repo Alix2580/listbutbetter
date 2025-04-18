@@ -37,6 +37,12 @@
 			"link": "https://www.youtube.com/watch?v=bu7yrRvevp8",
 			"percent": 100,
 			"hz": 240
+		},
+	       {
+			"user": "verizat",
+			"link": "https://youtu.be/2qy-gyLIMco",
+			"percent": 100,
+			"hz": 360
 		}
     ]
 }

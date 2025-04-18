@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/La52CnlLkOc?si=_DxkqQyWONTxxOiy",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+        {
+			"user": "Skylar",
+			"link": "https://youtu.be/QxOd_CIuT14",
+			"percent": 100,
+			"hz": 160
+		}
+    ]
 }

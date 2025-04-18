@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/lqxuway4U-s",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+          {
+			"user": "Awennue",
+			"link": "https://youtu.be/PK4bjAfMdhM",
+			"percent": 100,
+			"hz": 360
+		}
+    ]
 }

@@ -43,6 +43,12 @@
 			"link": "hhttps://www.youtube.com/watch?v=WP1-sHgE_KY",
 			"percent": 100,
 			"hz": 240
+		},
+	     {
+			"user": "Awennue",
+			"link": "https://youtu.be/PK4bjAfMdhM",
+			"percent": 100,
+			"hz": 360
 		}
     ]
 }

@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/hVjJmXRE4gk?si=8CyT0_e81N8ytn6M",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+         {
+			"user": "mathey",
+			"link": "https://www.youtube.com/watch?v=pF63DR1w5rI",
+			"percent": 100,
+			"hz": 144
+		}
+    ]
 }

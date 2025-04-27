@@ -134,27 +134,3 @@
      background-color: #5d5d5d;
      padding: 7px;
  }
-/* Search Bar Styling */
-.search-bar {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 2px solid;
-    background: transparent;
-    outline: none;
-    transition: border-color 0.3s, color 0.3s;
-}
-
-/* Light Mode */
-.search-bar {
-    border-color: black;
-    color: black;
-}
-
-/* Dark Mode */
-.search-bar.dark {
-    border-color: white;
-    color: white;
-}
-

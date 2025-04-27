@@ -22,31 +22,26 @@ function getRankColor(rank) {
     return undefined;
 }
 
+// New method for calculating opacity based on rank
 function getOpacity(rank) {
     if (rank >= 101 && rank <= 151) {
-        const opacity = 1 - (rank - 101) / 50;
-        return opacity < 0 ? 0 : opacity;
+        // For ranks 101 to 151, opacity gradually decreases from 1 to 0
+        const opacity = 1 - (rank - 101) / 50; // This will make opacity 1 for rank 101, and 0 for rank 151
+        return opacity < 0 ? 0 : opacity;  // Ensures opacity doesn't go below 0
     }
-    return 1;
+    return 1;  // Full opacity for ranks 1 to 100 and above 151
 }
 
 export default {
     components: { Spinner, LevelAuthors },
-    template: `
+    template: 
         <main v-if="loading">
             <Spinner></Spinner>
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <input
-                    type="text"
-                    v-model="searchQuery"
-                    placeholder="Search for a level..."
-                    class="search-bar"
-                    :class="{ 'dark': store.dark }"
-                />
-                <table class="list" v-if="filteredList.length > 0">
-                    <tr v-for="([err, rank, level], i) in filteredList" :key="level?.id || i">
+                <table class="list" v-if="list">
+                    <tr v-for="([err, rank, level], i) in list">
                         <td class="rank">
                             <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
@@ -63,13 +58,12 @@ export default {
                                     class="type-label-lg"
                                     :style="{ color: getRankColor(rank), opacity: getOpacity(rank) }"
                                 >
-                                    {{ level?.name || \`Error (\${err}.json)\` }}
+                                    {{ level?.name || \Error (\${err}.json)\ }}
                                 </span>
                             </button>
                         </td>
                     </tr>
                 </table>
-                <p v-else>No levels found.</p>
             </div>
             <div class="level-container">
                 <div class="level" v-if="level">
@@ -111,7 +105,7 @@ export default {
                     <p v-if="level.rank === null">This level does not accept records.</p>
                     <p v-else-if="level.rank <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
                     <p v-else-if="level.rank <= 150"><strong>100%</strong> or better to qualify</p>
-                    <p>else>This level has fallen to legacy, but still accepts completion records.</p>
+                    <p v-else>This level has fallen to legacy, but still accepts completion records.</p>
                     <table class="records">
                         <tr v-for="record in level.records" class="record">
                             <td class="percent">
@@ -121,7 +115,7 @@ export default {
                                 <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
                             </td>
                             <td class="mobile">
-                                <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
+                                <img v-if="record.mobile" :src="\/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\" alt="Mobile">
                             </td>
                         </tr>
                     </table>
@@ -142,24 +136,38 @@ export default {
                         <h3>List Editors</h3>
                         <ol class="editors">
                             <li v-for="editor in editors">
-                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
+                                <img :src="\/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\" :alt="editor.role">
                                 <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
                                 <p v-else>{{ editor.name }}</p>
                             </li>
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)</p>
-                    <p>Achieved the record on the level that is listed on the site - please check the level ID before you submit a record</p>
-                    <p>Have either source audio or clicks/taps in the video. Edited audio only does not count</p>
-                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this</p>
-                    <p>Do not use secret routes or bug routes</p>
-                    <p>Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies</p>
-                    <p>Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard</p>
+                    <p>
+                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
+                    </p>
+                    <p>
+                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
+                    </p>
+                    <p>
+                        Have either source audio or clicks/taps in the video. Edited audio only does not count
+                    </p>
+                    <p>
+                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
+                    </p>
+                    <p>
+                        Do not use secret routes or bug routes
+                    </p>
+                    <p>
+                        Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies
+                    </p>
+                    <p>
+                        Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard
+                    </p>
                 </div>
             </div>
         </main>
-    `,
+    ,
     data: () => ({
         list: [],
         editors: [],
@@ -170,30 +178,21 @@ export default {
         roleIconMap,
         store,
         toggledShowcase: false,
-        searchQuery: '', // ADDED
     }),
     computed: {
         level() {
-            return this.filteredList && this.filteredList[this.selected] && this.filteredList[this.selected][2];
+            return this.list && this.list[this.selected] && this.list[this.selected][2];
         },
         video() {
             if (!this.level.showcase) {
                 return embed(this.level.verification);
             }
+
             return embed(
                 this.toggledShowcase
                     ? this.level.showcase
                     : this.level.verification
             );
-        },
-        filteredList() { // ADDED
-            if (!this.searchQuery) {
-                return this.list;
-            }
-            return this.list.filter(([err, rank, level]) => {
-                if (!level || !level.name) return false;
-                return level.name.toLowerCase().includes(this.searchQuery.toLowerCase());
-            });
         },
     },
     async mounted() {
@@ -208,7 +207,7 @@ export default {
             this.errors.push(
                 ...this.list
                     .filter(([err]) => err)
-                    .map(([err]) => `Failed to load level. (${err}.json)`),
+                    .map(([err]) => Failed to load level. (${err}.json)),
             );
             if (!this.editors) {
                 this.errors.push('Failed to load list editors.');

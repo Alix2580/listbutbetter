@@ -134,3 +134,27 @@
      background-color: #5d5d5d;
      padding: 7px;
  }
+/* Search Bar Styling */
+.search-bar {
+    width: 100%;
+    padding: 0.75rem 1rem; /* a bit more padding */
+    font-size: 1rem;
+    border-radius: 8px; /* rounded rectangle */
+    border: 2px solid; /* thicker border */
+    background: transparent; /* no background */
+    outline: none; /* no blue outline when clicked */
+    transition: border-color 0.3s, color 0.3s; /* smooth transition */
+}
+
+/* Light Mode */
+body:not(.dark) .search-bar {
+    border-color: black;
+    color: black;
+}
+
+/* Dark Mode */
+body.dark .search-bar {
+    border-color: white;
+    color: white;
+}
+

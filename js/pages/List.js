@@ -22,14 +22,14 @@ function getRankColor(rank) {
     return undefined;
 }
 
-// New method for calculating opacity based on rank
-function getOpacity(rank) {
+// Modified opacity logic to support benchmark visibility
+function getOpacity(rank, level) {
+    if (level?.benchmark) return 0.4;
     if (rank >= 101 && rank <= 151) {
-        // For ranks 101 to 151, opacity gradually decreases from 1 to 0
-        const opacity = 1 - (rank - 101) / 50; // This will make opacity 1 for rank 101, and 0 for rank 151
-        return opacity < 0 ? 0 : opacity;  // Ensures opacity doesn't go below 0
+        const opacity = 1 - (rank - 101) / 50;
+        return opacity < 0 ? 0 : opacity;
     }
-    return 1;  // Full opacity for ranks 1 to 100 and above 151
+    return 1;
 }
 
 export default {
@@ -47,7 +47,7 @@ export default {
                             <p
                                 v-else
                                 class="type-label-lg"
-                                :style="{ color: getRankColor(rank), opacity: getOpacity(rank) }"
+                                :style="{ color: getRankColor(rank), opacity: getOpacity(rank, level) }"
                             >
                                 #{{ rank }}
                             </p>
@@ -56,7 +56,7 @@ export default {
                             <button @click="selected = i">
                                 <span
                                     class="type-label-lg"
-                                    :style="{ color: getRankColor(rank), opacity: getOpacity(rank) }"
+                                    :style="{ color: getRankColor(rank), opacity: getOpacity(rank, level) }"
                                 >
                                     {{ level?.name || \`Error (\${err}.json)\` }}
                                 </span>

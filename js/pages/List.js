@@ -24,7 +24,7 @@ function getRankColor(rank) {
 
 // Updated opacity function
 function getOpacity(rank) {
-    if (rank === null) return 0.1; // Benchmark levels
+    if (rank === null) return 0.17; // Benchmark levels
     if (rank >= 101 && rank <= 151) {
         const opacity = 1 - (rank - 101) / 50;
         return opacity < 0 ? 0 : opacity;

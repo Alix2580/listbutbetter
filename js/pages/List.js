@@ -22,9 +22,9 @@ function getRankColor(rank) {
     return undefined;
 }
 
-// Modified opacity logic to support benchmark visibility
-function getOpacity(rank, level) {
-    if (level?.benchmark) return 0.4;
+// Updated opacity function
+function getOpacity(rank) {
+    if (rank === null) return 0.3; // Benchmark levels
     if (rank >= 101 && rank <= 151) {
         const opacity = 1 - (rank - 101) / 50;
         return opacity < 0 ? 0 : opacity;
@@ -43,20 +43,18 @@ export default {
                 <table class="list" v-if="list">
                     <tr v-for="([err, rank, level], i) in list">
                         <td class="rank">
-                            <p v-if="rank === null" class="type-label-lg">&mdash;</p>
                             <p
-                                v-else
                                 class="type-label-lg"
-                                :style="{ color: getRankColor(rank), opacity: getOpacity(rank, level) }"
+                                :style="{ color: getRankColor(rank), opacity: getOpacity(rank) }"
                             >
-                                #{{ rank }}
+                                {{ rank === null ? '—' : \`#\${rank}\` }}
                             </p>
                         </td>
                         <td class="level" :class="{ 'active': selected == i, 'error': err !== null }">
                             <button @click="selected = i">
                                 <span
                                     class="type-label-lg"
-                                    :style="{ color: getRankColor(rank), opacity: getOpacity(rank, level) }"
+                                    :style="{ color: getRankColor(rank), opacity: getOpacity(rank) }"
                                 >
                                     {{ level?.name || \`Error (\${err}.json)\` }}
                                 </span>
@@ -143,27 +141,13 @@ export default {
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard
-                    </p>
+                    <p>Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)</p>
+                    <p>Achieved the record on the level that is listed on the site - please check the level ID before you submit a record</p>
+                    <p>Have either source audio or clicks/taps in the video. Edited audio only does not count</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this</p>
+                    <p>Do not use secret routes or bug routes</p>
+                    <p>Do not use superbuffed/easy/changed gp version of a level, only a record of the unmodified level qualifies</p>
+                    <p>Once a level falls onto the Legacy List, we accept records for it still, but they won't award any kind of points for the leaderboard</p>
                 </div>
             </div>
         </main>
@@ -187,7 +171,6 @@ export default {
             if (!this.level.showcase) {
                 return embed(this.level.verification);
             }
-
             return embed(
                 this.toggledShowcase
                     ? this.level.showcase

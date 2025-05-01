@@ -1,5 +1,5 @@
-import { createListView } from './SharedListView.js';
-import { fetchList } from './content.js';
+import { createListView } from '../SharedListView.js';
+import { fetchList } from '../content.js';
 
 export default createListView({
     fetchList,

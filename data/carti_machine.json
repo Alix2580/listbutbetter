@@ -7,5 +7,12 @@
     "verification": "https://www.youtube.com/watch?v=FoWWKLU26Fg&embeds_referring_euri=https%3A%2F%2Fpgdl.pages.dev%2F&source_ve_path=MjM4NTE",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+           {
+			"user": "Luna",
+			"link": "https://youtu.be/fVZGE_ifjFo",
+			"percent": 100,
+			"hz": 480
+		}
+    ]
 }

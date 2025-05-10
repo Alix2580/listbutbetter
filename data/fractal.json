@@ -7,5 +7,12 @@
     "verification": "https://www.youtube.com/watch?v=LJihPuKPmqI",
     "percentToQualify": 100,
     "password": "Copyable",
-    "records": []
+    "records": [
+             {
+			"user": "KYY",
+			"link": "https://www.youtube.com/watch?v=lBYH5IDJqEo",
+			"percent": 100,
+			"hz": 480
+		}
+    ]
 }

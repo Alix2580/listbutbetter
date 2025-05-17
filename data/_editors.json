@@ -5,7 +5,7 @@
         "link": "nah"
     },
     {
-        "role": "admin",
+        "role": "mod",
         "name": "Kubix",
         "link": "nah"
     },
@@ -14,9 +14,14 @@
         "name": "mathey",
         "link": "nah"
     },
+     {
+        "role": "admin",
+        "name": "Furrious",
+        "link": "nah"
+    },
     {
         "role": "helper",
-        "name": "bal",
+        "name": "Kuramishiro",
         "link": "nah"
     },
       {
@@ -26,52 +31,32 @@
     },
       {
         "role": "helper",
-        "name": "Rae",
-        "link": "nah"
-    },
-  {
-        "role": "helper",
-        "name": "R3SERT1",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "kal",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "gamecheese",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
         "name": "Hexy",
         "link": "nah"
     },
-      {
-        "role": "helper",
-        "name": "Xan",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "yeeee",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "swifticat",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "Firelia",
-        "link": "nah"
-    },
     {
-        "role": "helper",
+        "role": "mod",
         "name": "Krieger",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "C1GAMER",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "Noah",
+        "link": "nah"
+    },
+      {
+        "role": "helper",
+        "name": "shib",
+        "link": "nah"
+    },
+     {
+        "role": "mod",
+        "name": "Firelia",
         "link": "nah"
     },
     {

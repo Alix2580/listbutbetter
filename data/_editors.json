@@ -26,6 +26,11 @@
     },
      {
         "role": "mod",
+        "name": "Hexy",
+        "link": "nah"
+    },
+     {
+        "role": "mod",
         "name": "Krieger",
         "link": "nah"
     },
@@ -37,11 +42,6 @@
       {
         "role": "helper",
         "name": "Skylar",
-        "link": "nah"
-    },
-      {
-        "role": "helper",
-        "name": "Hexy",
         "link": "nah"
     },
       {

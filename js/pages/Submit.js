@@ -125,7 +125,7 @@ export default {
 				return;
 			}
 			return new Promise((resolve, reject) => {
-				fetch("https://discord.com/api/webhooks/1287025385430716450/7KDJ0zXogVaLo88pRPhTXVtPghLh1E-EPEIhni_WFZ1YD307VzyXGH8bOfxBZ5_VVmai", {
+				fetch("https://discord.com/api/webhooks/1381004484066676836/6xEAzw51JCpIouI7L_C35GBAh6iE22c-hdzwa3HSSyDlY8dZKMSDappeSSKiLsViL5zN", {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',

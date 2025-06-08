@@ -13,6 +13,12 @@
 			"link": "https://www.youtube.com/watch?v=PVwt6KqfEr4",
 			"percent": 100,
 			"hz": 240
+		},
+	      {
+			"user": "kubikk",
+			"link": "https://youtu.be/TbBXFHR6_Sw",
+			"percent": 100,
+			"hz": 480
 		}
     ]
 }

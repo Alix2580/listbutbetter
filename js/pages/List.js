@@ -1,44 +1,61 @@
 import { store } from '../main.js';
-import { fetchList } from '../content.js';
-import Spinner from '../components/Spinner.js';
+import { embed } from '../util.js';
+import { score } from '../score.js';
+import { fetchEditors, fetchList } from '../content.js';
 
 export default {
-    components: { Spinner },
-    template: `
-        <main v-if="loading">
-            <Spinner></Spinner>
-        </main>
-        <main v-else class="page-list">
-            <div class="list-container">
-                <div class="level-box" v-for="([err, rank, level], i) in list" :key="level?.id">
-                    <a :href="level?.youtube || '#'" target="_blank" class="thumbnail">
-                        <img :src="getThumbnail(level?.youtube)" alt="Level Thumbnail"/>
-                    </a>
-                    <div class="level-info">
-                        <p class="title">
-                            <span class="rank">{{ rank === null ? '—' : '#' + rank }}</span> – 
-                            <span class="name">{{ level?.name || 'Error' }}</span>
-                        </p>
-                        <p class="author">{{ level?.author || 'Unknown' }}</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    `,
     data: () => ({
         list: [],
         loading: true,
+        selected: 0,
         store,
     }),
+    computed: {
+        level() {
+            return this.list && this.list[this.selected] && this.list[this.selected][2];
+        }
+    },
     async mounted() {
         this.list = await fetchList();
         this.loading = false;
     },
     methods: {
-        getThumbnail(youtube) {
-            if (!youtube) return '/assets/default-thumbnail.png';
-            const id = youtube.split('v=')[1]?.split('&')[0];
-            return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+        embed,
+        score,
+    },
+    template: `
+        <main v-if="loading">
+            <p style="text-align:center; margin-top: 2rem;">Loading...</p>
+        </main>
+        <main v-else class="page-list">
+            <div class="list-container">
+                <div
+                    class="level-box"
+                    v-for="([err, rank, level], i) in list"
+                    :key="level.id"
+                >
+                    <div class="thumbnail">
+                        <img
+                            :src="level.song ? \`https://img.youtube.com/vi/\${extractYouTubeID(level.song)}/0.jpg\` : '/assets/default-thumbnail.png'"
+                            alt="Thumbnail"
+                        />
+                    </div>
+                    <div class="level-info">
+                        <p class="title">
+                            <span class="rank">#{{ rank }}</span> – 
+                            <span class="name">{{ level.name }}</span>
+                        </p>
+                        <p class="author">{{ level.author }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    `,
+    methods: {
+        extractYouTubeID(url) {
+            // Extract YouTube video ID
+            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w-]{11})/);
+            return match ? match[1] : '';
         }
     }
 };

@@ -1,20 +1,12 @@
 import { store } from '../main.js';
-import { embed } from '../util.js';
-import { score } from '../score.js';
-import { fetchEditors, fetchList } from '../content.js';
+import { fetchList } from '../content.js';
 
 export default {
     data: () => ({
         list: [],
         loading: true,
-        selected: 0,
         store,
     }),
-    computed: {
-        level() {
-            return this.list && this.list[this.selected] && this.list[this.selected][2];
-        }
-    },
     async mounted() {
         this.list = await fetchList();
         this.loading = false;

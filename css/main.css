@@ -46,8 +46,8 @@ main {
 header {
     display: flex;
     padding-inline: calc(25vw - 10rem);
-    height: 5rem; /* changed from 5.5rem to 5rem */
-    min-height: 5rem; /* changed from 5.5rem to 5rem */
+    height: 4.7rem; /* changed header height */
+    min-height: 4.7rem;
     background-color: rgba(0, 0, 0, 0.7);
     color: var(--color-on-primary);
     align-items: center;
@@ -61,19 +61,14 @@ header {
 }
 
 header .logo {
-    justify-self: end;
-    align-self: center;
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
+    display: none; /* Removed SKDL and v2.0.0 as per previous requirements */
 }
 
 header .nav {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: stretch; /* stretch buttons to full height */
     justify-content: flex-end;
-    gap: 0.5rem;
 }
 
 header .nav .nav__tab,
@@ -85,10 +80,9 @@ header .nav .nav__cta {
     color: var(--color-on-primary);
     border: none;
     border-radius: 0;
-    padding: 0;
+    padding: 0 1rem;
     margin: 0;
     height: 100%;
-    min-width: 6rem;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 200ms;

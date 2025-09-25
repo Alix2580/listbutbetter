@@ -38,7 +38,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem; /* shifted slightly left */
+    padding: 0 1rem; 
     height: 4.5rem;
     min-height: 4.5rem;
     background-color: rgba(0, 0, 0, 0.7);
@@ -61,6 +61,7 @@ header .logo {
 .nav-buttons {
     display: flex;
     height: 100%;
+    margin-right: 2rem; /* move buttons slightly left from far right */
 }
 
 /* Equal-width, full-height buttons with no rounding and touching each other */
@@ -69,16 +70,23 @@ header .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1 1 0; /* all buttons same width */
+    flex: 1 1 0;
     height: 100%;
-    padding: 0;
+    padding: 0 1.5rem; /* more breathing space */
     margin: 0;
     background-color: rgba(255, 255, 255, 0.15);
     color: var(--color-on-primary);
-    text-decoration: none;
+    text-decoration: none !important; /* remove underline */
     border: none;
-    border-radius: 0; /* no rounding */
+    border-radius: 0;
     transition: background-color 0.2s;
+    white-space: nowrap; /* prevent wrapping */
+    box-sizing: border-box;
+}
+
+.nav-buttons .nav__tab span,
+.nav-buttons .nav__cta span {
+    text-decoration: none !important; /* ensure span text is not underlined */
 }
 
 .nav-buttons .nav__tab:hover,
@@ -97,7 +105,7 @@ header .logo {
     align-items: center;
     gap: 0.5rem;
     height: 100%;
-    margin-left: 0.5rem; /* slightly left shift */
+    margin-left: 0.5rem;
 }
 
 .nav__icon {

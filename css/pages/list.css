@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: center; /* keeps boxes centered */
+    align-items: flex-end; /* move boxes to the right */
     padding: 2rem 1rem;
 }
 
@@ -10,14 +10,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
-    max-width: 1100px; /* extra width for long names */
+    width: 80%; /* keeps boxes sizable but not full width */
+    max-width: 1100px;
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--color-on-primary);
     padding: 1rem;
-    border-radius: 0; /* removed rounded corners */
     gap: 1rem;
     transition: background-color 0.2s;
+    /* removed border-radius to keep boxes sharp */
 }
 
 .level-box:hover {
@@ -44,7 +44,7 @@
     flex-direction: column;
     justify-content: center;
     flex: 1;
-    min-width: 0; /* allows text to shrink if needed */
+    min-width: 0; /* ensures text can shrink without cutting off */
 }
 
 .level-info .title {
@@ -52,9 +52,10 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    white-space: nowrap; /* prevent wrapping */
-    overflow: hidden; /* clip overflow */
-    text-overflow: ellipsis; /* show ... for overflow */
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
 }
 
 .level-info .title .rank {

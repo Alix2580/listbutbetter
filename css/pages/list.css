@@ -9,7 +9,8 @@
 .level-box {
     display: flex;
     align-items: flex-start;
-    width: 95%;
+    width: 90%;           /* lengthened horizontally */
+    max-width: 1000px;    /* optional limit for very wide screens */
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--color-on-primary);
     padding: 1rem;
@@ -40,6 +41,9 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
+    white-space: nowrap;       /* prevents wrapping of long names */
+    overflow: hidden;
+    text-overflow: ellipsis;   /* optional: shows ... if text still overflows */
 }
 
 .level-info .title .rank {

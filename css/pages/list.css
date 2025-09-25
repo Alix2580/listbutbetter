@@ -9,11 +9,11 @@
 .level-box {
     display: flex;
     align-items: flex-start;
-    width: 90%;           /* lengthened horizontally */
-    max-width: 1000px;    /* optional limit for very wide screens */
+    width: auto;            /* allow the box to expand with content */
+    max-width: 1000px;      /* prevent absurdly wide boxes */
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--color-on-primary);
-    padding: 1rem;
+    padding: 1rem 2rem;     /* extra horizontal padding for breathing space */
     border-radius: 0.5rem;
     gap: 1rem;
     transition: background-color 0.2s;
@@ -34,6 +34,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: visible;
 }
 
 .level-info .title {
@@ -41,9 +42,9 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    white-space: nowrap;       /* prevents wrapping of long names */
-    overflow: hidden;
-    text-overflow: ellipsis;   /* optional: shows ... if text still overflows */
+    white-space: normal;  /* allow wrapping if extremely long */
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .level-info .title .rank {

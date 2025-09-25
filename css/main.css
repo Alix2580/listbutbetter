@@ -45,30 +45,23 @@ main {
 
 header {
     display: flex;
-    padding-inline: calc(25vw - 10rem);
-    height: 4.7rem; /* changed header height */
-    min-height: 4.7rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 4.5rem;
     background-color: rgba(0, 0, 0, 0.7);
     color: var(--color-on-primary);
-    align-items: center;
-}
-
-@media screen and (min-width: 1366px) {
-    header {
-        display: grid;
-        padding-inline: 0;
-    }
 }
 
 header .logo {
-    display: none; /* Removed SKDL and v2.0.0 as per previous requirements */
+    display: none; /* SKDL and version removed */
 }
 
 header .nav {
-    flex: 1;
     display: flex;
-    align-items: stretch; /* stretch buttons to full height */
-    justify-content: flex-end;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-left: auto;
 }
 
 header .nav .nav__tab,
@@ -79,25 +72,24 @@ header .nav .nav__cta {
     background-color: rgba(255, 255, 255, 0.2);
     color: var(--color-on-primary);
     border: none;
-    border-radius: 0;
     padding: 0 1rem;
-    margin: 0;
     height: 100%;
-    text-decoration: none;
     cursor: pointer;
+    text-decoration: none;
     transition: background-color 200ms;
 }
 
 header .nav .nav__tab:hover,
 header .nav .nav__cta:hover {
     background-color: rgba(255, 255, 255, 0.3);
-    text-decoration: none; /* removes underline on hover */
+    text-decoration: none;
 }
 
 header .nav .nav__actions {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-left: 1rem;
 }
 
 header .nav .nav__actions .nav__icon {
@@ -106,8 +98,8 @@ header .nav .nav__actions .nav__icon {
     justify-content: center;
     background: none;
     border: none;
-    padding: 0.3rem;
     cursor: pointer;
+    padding: 0.3rem;
 }
 
 header .nav .nav__actions img {

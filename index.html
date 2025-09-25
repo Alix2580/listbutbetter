@@ -40,9 +40,6 @@
         </nav>
     </header>
 
-    <!-- wrap router-view in a full-width flex container to center the list -->
-    <div class="main-container" style="display:flex; justify-content:center; width:100%;">
-        <router-view :class="{ dark: store.dark }"></router-view>
-    </div>
+    <router-view :class="{ dark: store.dark }"></router-view>
 </body>
 </html>

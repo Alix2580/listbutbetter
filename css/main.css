@@ -3,10 +3,7 @@
     --color-on-background: black;
     --color-background-hover: #eee;
     --color-on-background-hover: black;
-    --color-primary: rgba(0, 0, 0, 0.7); /* header semi-transparent */
-    --color-primary-hover: rgba(0, 0, 0, 0.8);
-    --color-primary-button: rgba(255, 255, 255, 0.15);
-    --color-primary-button-hover: rgba(255, 255, 255, 0.25);
+    --color-primary: #000000;
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
@@ -19,10 +16,8 @@ header.dark {
     --color-on-background: white;
     --color-background-hover: #27262c;
     --color-on-background-hover: white;
-    --color-primary: rgba(28, 27, 31, 0.7);
-    --color-primary-hover: rgba(28, 27, 31, 0.8);
-    --color-primary-button: rgba(255, 255, 255, 0.15);
-    --color-primary-button-hover: rgba(255, 255, 255, 0.25);
+    --color-primary: #000000;
+    --color-primary-disabled: #1f213c;
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
@@ -39,56 +34,65 @@ body {
     margin: 0;
 }
 
+header,
+main {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    display: grid;
+    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(
+            16em,
+            1fr
+        );
+    column-gap: 2rem;
+}
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem; /* slightly taller */
-    background-color: var(--color-primary);
+    height: 5rem; /* slightly bigger header */
+    background-color: rgba(0, 0, 0, 0.7); /* 70% transparency */
     color: var(--color-on-primary);
-    backdrop-filter: blur(5px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 .nav {
     display: flex;
-    align-items: stretch; /* stretch children vertically */
-    width: 100%;
+    flex: 1;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 0;
 }
 
 .nav-buttons {
     display: flex;
-    height: 100%; /* stretch boxes */
-    margin-left: auto;
+    height: 100%;
 }
 
-.nav__tab {
+.nav-buttons .nav__tab {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* full height of header */
+    height: 100%;
     padding: 0 1.5rem;
-    background-color: var(--color-primary-button);
+    background-color: rgba(255, 255, 255, 0.15); /* lighter than header */
     color: var(--color-on-primary);
     text-decoration: none;
+    border: none;
+    margin: 0;
     transition: background-color 0.2s;
-    border-radius: 0; 
 }
 
-.nav__tab + .nav__tab {
-    margin-left: 0;
+.nav-buttons .nav__tab:hover {
+    background-color: rgba(255, 255, 255, 0.25); /* slightly darker on hover */
 }
 
-.nav__tab:hover,
-.nav__tab:active {
-    background-color: var(--color-primary-button-hover);
+.nav-buttons .nav__tab:active {
+    background-color: rgba(255, 255, 255, 0.2); /* slightly pressed effect */
 }
 
-.nav__tab * {
-    text-decoration: none !important; /* remove underline/line effects */
+.nav__tab span {
+    text-decoration: none !important; /* remove underline */
 }
 
 /* Utilities on far right */
@@ -96,72 +100,25 @@ header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 1rem;
+    height: 100%;
 }
 
 .nav__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: none;
     border: none;
-    padding: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .nav__icon img {
-    height: 1.5rem; /* smaller icons for both discord and toggle */
+    height: 2rem;
     width: auto;
 }
 
-.nav__icon:hover {
-    background: none;
-}
-
-main {
-    height: 0;
-    flex: 1;
-    display: grid;
-    grid-template-rows: minmax(0, 1fr);
-    column-gap: 2rem;
-}
-
-main > div {
-    overflow-y: auto;
-}
-
-.spinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-column: span 3;
-}
-
-input[type="checkbox"] {
-    height: 1.25rem;
-    width: 1.25rem;
-    cursor: pointer;
-    margin: 0;
-}
-
-.country-flag {
-    width: 2rem;
-    height: auto;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-.user {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.flag-icon {
-    border-radius: 5px;
-    width: 24px;
-    height: 16px;
-    display: inline-block;
+/* Remove any default underline or line effect on links/buttons */
+a, a:visited, a:hover, a:active, button {
+    text-decoration: none;
+    outline: none;
 }

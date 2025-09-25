@@ -39,8 +39,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5.5rem; /* updated header height */
-    min-height: 5.5rem;
+    height: 5.1rem; /* updated header height */
+    min-height: 5.1rem;
     background-color: rgba(0, 0, 0, 0.7); /* 70% transparency */
     color: var(--color-on-primary);
 }

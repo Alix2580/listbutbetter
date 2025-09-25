@@ -8,6 +8,7 @@
     padding-inline: 1rem;
     display: flex;
     justify-content: center; /* Center the list horizontally */
+    flex: 1; /* Fill available space */
 }
 
 .page-list .meta-container {
@@ -157,7 +158,7 @@
 
 .tag {
     font-family: "Lexend Deca", sans-serif;
-    display: block;
+    display:block;
     border-radius: 14px;
     color: white;
     background-color: #5d5d5d;

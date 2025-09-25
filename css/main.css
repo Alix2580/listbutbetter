@@ -5,8 +5,8 @@
     --color-on-background-hover: black;
     --color-primary: rgba(0, 0, 0, 0.7); /* header semi-transparent */
     --color-primary-hover: rgba(0, 0, 0, 0.8);
-    --color-primary-button: rgba(255, 255, 255, 0.15); /* default button background */
-    --color-primary-button-hover: rgba(255, 255, 255, 0.25); /* button hover */
+    --color-primary-button: rgba(255, 255, 255, 0.15);
+    --color-primary-button-hover: rgba(255, 255, 255, 0.25);
     --color-on-primary: white;
     --color-error: #de0000;
     --color-on-error: white;
@@ -44,7 +44,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem;
+    height: 5rem; /* slightly taller */
     background-color: var(--color-primary);
     color: var(--color-on-primary);
     backdrop-filter: blur(5px);
@@ -57,12 +57,11 @@ header {
     display: flex;
     align-items: stretch; /* stretch children vertically */
     width: 100%;
-    justify-content: space-between;
 }
 
 .nav-buttons {
     display: flex;
-    height: 100%; /* stretch the boxes */
+    height: 100%; /* stretch boxes */
     margin-left: auto;
 }
 
@@ -70,50 +69,54 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1.5rem; /* horizontal padding, height controlled by parent */
+    height: 100%; /* full height of header */
+    padding: 0 1.5rem;
     background-color: var(--color-primary-button);
     color: var(--color-on-primary);
     text-decoration: none;
     transition: background-color 0.2s;
-    border-radius: 0; /* remove rounding to make boxes touch */
+    border-radius: 0; 
 }
 
 .nav__tab + .nav__tab {
-    margin-left: 0; /* remove gaps between buttons */
+    margin-left: 0;
 }
 
-.nav__tab:hover {
-    background-color: var(--color-primary-button-hover);
-}
-
+.nav__tab:hover,
 .nav__tab:active {
     background-color: var(--color-primary-button-hover);
 }
 
 .nav__tab * {
-    text-decoration: none; /* remove underlines inside button text */
+    text-decoration: none !important; /* remove underline/line effects */
 }
 
+/* Utilities on far right */
 .utilities {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 1rem; /* stay at far right */
+    margin-left: 1rem;
 }
 
 .nav__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: none; /* remove box style for icons */
+    background: none;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
+.nav__icon img {
+    height: 1.5rem; /* smaller icons for both discord and toggle */
+    width: auto;
+}
+
 .nav__icon:hover {
-    background: none; /* no hover box */
+    background: none;
 }
 
 main {
@@ -142,7 +145,6 @@ input[type="checkbox"] {
     margin: 0;
 }
 
-/* Flag Styling for the Leaderboard */
 .country-flag {
     width: 2rem;
     height: auto;

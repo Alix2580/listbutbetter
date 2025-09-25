@@ -2,18 +2,18 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: center; /* Center the boxes horizontally */
+    align-items: center; /* Center boxes horizontally */
     padding: 2rem 1rem;
 }
 
 .level-box {
     display: flex;
     align-items: flex-start;
-    width: 90%; /* Slightly wider than before */
-    max-width: 800px; /* Prevent it from going offscreen */
+    width: 95%; /* Expanded to the right for long names */
+    max-width: 900px; /* Prevent it from overflowing */
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--color-on-primary);
-    padding: 1rem;
+    padding: 1rem 1.5rem; /* Extra padding for breathing room */
     border-radius: 0.5rem;
     gap: 1rem;
     transition: background-color 0.2s;
@@ -28,13 +28,15 @@
     height: 90px;
     object-fit: cover;
     border-radius: 0.3rem;
+    flex-shrink: 0;
 }
 
 .level-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 1; /* Ensures the text takes remaining space */
+    flex: 1; /* Take remaining space */
+    min-width: 0; /* Ensure ellipsis works correctly */
 }
 
 .level-info .title {
@@ -42,9 +44,9 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; 
-    text-overflow: ellipsis; /* Optional: show ... if still too long */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ... for too long names */
 }
 
 .level-info .title .rank {
@@ -60,4 +62,7 @@
     font-weight: 400;
     color: rgba(255,255,255,0.8);
     margin-top: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

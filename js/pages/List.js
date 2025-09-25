@@ -20,8 +20,10 @@ export default {
         this.loading = false;
     },
     methods: {
-        embed,
-        score,
+        extractYouTubeID(url) {
+            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w-]{11})/);
+            return match ? match[1] : '';
+        }
     },
     template: `
         <main v-if="loading">
@@ -50,12 +52,5 @@ export default {
                 </div>
             </div>
         </main>
-    `,
-    methods: {
-        extractYouTubeID(url) {
-            // Extract YouTube video ID
-            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w-]{11})/);
-            return match ? match[1] : '';
-        }
-    }
+    `
 };

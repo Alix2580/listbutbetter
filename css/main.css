@@ -44,7 +44,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem; /* slightly bigger */
+    height: 5rem;
     background-color: var(--color-primary);
     color: var(--color-on-primary);
     backdrop-filter: blur(5px);
@@ -55,31 +55,43 @@ header {
 
 .nav {
     display: flex;
-    align-items: center;
+    align-items: stretch; /* stretch children vertically */
     width: 100%;
     justify-content: space-between;
 }
 
 .nav-buttons {
     display: flex;
-    gap: 1rem;
-    margin-left: auto; /* push buttons to middle-right */
+    height: 100%; /* stretch the boxes */
+    margin-left: auto;
 }
 
 .nav__tab {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
+    padding: 0 1.5rem; /* horizontal padding, height controlled by parent */
     background-color: var(--color-primary-button);
     color: var(--color-on-primary);
-    border-radius: 0.5rem;
     text-decoration: none;
     transition: background-color 0.2s;
+    border-radius: 0; /* remove rounding to make boxes touch */
+}
+
+.nav__tab + .nav__tab {
+    margin-left: 0; /* remove gaps between buttons */
 }
 
 .nav__tab:hover {
     background-color: var(--color-primary-button-hover);
+}
+
+.nav__tab:active {
+    background-color: var(--color-primary-button-hover);
+}
+
+.nav__tab * {
+    text-decoration: none; /* remove underlines inside button text */
 }
 
 .utilities {
@@ -93,16 +105,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-primary-button);
+    background: none; /* remove box style for icons */
     border: none;
-    border-radius: 0.5rem;
     padding: 0.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .nav__icon:hover {
-    background-color: var(--color-primary-button-hover);
+    background: none; /* no hover box */
 }
 
 main {

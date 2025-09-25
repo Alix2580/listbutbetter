@@ -1,20 +1,39 @@
 import { store } from '../main.js';
-import { fetchList } from '../content.js';
+import { embed } from '../util.js';
+import { score } from '../score.js';
+import { fetchEditors, fetchList } from '../content.js';
 
 export default {
     data: () => ({
         list: [],
         loading: true,
+        selected: 0,
         store,
     }),
+    computed: {
+        level() {
+            return this.list && this.list[this.selected] && this.list[this.selected][2];
+        }
+    },
     async mounted() {
         this.list = await fetchList();
         this.loading = false;
     },
     methods: {
         extractYouTubeID(url) {
-            const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w-]{11})/);
-            return match ? match[1] : '';
+            if (!url) return '';
+            try {
+                const u = new URL(url);
+                if (u.hostname.includes('youtu.be')) {
+                    return u.pathname.slice(1);
+                }
+                if (u.hostname.includes('youtube.com')) {
+                    return u.searchParams.get('v');
+                }
+            } catch (e) {
+                return '';
+            }
+            return '';
         }
     },
     template: `
@@ -36,7 +55,7 @@ export default {
                     </div>
                     <div class="level-info">
                         <p class="title">
-                            <span class="rank">#{{ rank }}</span> – 
+                            <span class="rank">#{{ rank }}</span> –
                             <span class="name">{{ level.name }}</span>
                         </p>
                         <p class="author">{{ level.author }}</p>

@@ -15,7 +15,7 @@
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--color-on-primary);
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0; /* removed rounded corners */
     gap: 1rem;
     transition: background-color 0.2s;
 }
@@ -29,7 +29,7 @@
     width: 160px;
     height: 90px;
     overflow: hidden;
-    border-radius: 0.3rem;
+    border-radius: 0; /* removed rounded corners */
     background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -38,7 +38,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 0.3rem;
+    border-radius: 0; /* removed rounded corners */
 }
 
 .level-info {

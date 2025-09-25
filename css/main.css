@@ -38,9 +38,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1.5rem; /* moved a little to the left */
-    height: 5.5rem;
-    min-height: 5.5rem;
+    padding: 0 1rem; /* shifted slightly left */
+    height: 4.5rem;
+    min-height: 4.5rem;
     background-color: rgba(0, 0, 0, 0.7);
     color: var(--color-on-primary);
 }
@@ -57,29 +57,28 @@ header .logo {
     align-items: center;
 }
 
+/* Main buttons container */
 .nav-buttons {
     display: flex;
     height: 100%;
-    gap: 0.3rem; /* slight spacing between boxes */
 }
 
-/* Equal-width main buttons based on widest text */
+/* Equal-width, full-height buttons with no rounding and touching each other */
 .nav-buttons .nav__tab,
 .nav-buttons .nav__cta {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-basis: 12rem; /* uniform width for all main buttons */
+    flex: 1 1 0; /* all buttons same width */
     height: 100%;
-    padding: 0 1rem;
+    padding: 0;
+    margin: 0;
     background-color: rgba(255, 255, 255, 0.15);
     color: var(--color-on-primary);
     text-decoration: none;
     border: none;
-    margin: 0;
+    border-radius: 0; /* no rounding */
     transition: background-color 0.2s;
-    border-radius: 0.3rem;
-    box-sizing: border-box;
 }
 
 .nav-buttons .nav__tab:hover,
@@ -92,17 +91,13 @@ header .logo {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.nav__tab span {
-    text-decoration: none !important;
-}
-
-/* Right utilities (discord & dark mode toggle) */
+/* Utilities (Discord + theme toggle) */
 .utilities {
     display: flex;
     align-items: center;
-    gap: 0.8rem; /* slightly reduced gap */
+    gap: 0.5rem;
     height: 100%;
-    margin-right: 0.5rem; /* move slightly to the left */
+    margin-left: 0.5rem; /* slightly left shift */
 }
 
 .nav__icon {

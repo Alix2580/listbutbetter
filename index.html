@@ -15,12 +15,7 @@
     <link rel="stylesheet" type="text/css" href="/css/typography.css" />
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/pages/list.css" />
-    <link rel="stylesheet" type="text/css" href="/css/pages/submit.css" />
-    <link rel="stylesheet" type="text/css" href="/css/pages/leaderboard.css" />
-    <link rel="stylesheet" type="text/css" href="/css/pages/roulette.css" />
     <link rel="stylesheet" type="text/css" href="/css/components/nav.css" />
-    <link rel="stylesheet" type="text/css" href="/css/components/btn.css" />
-    <link rel="stylesheet" type="text/css" href="/css/components/tabs.css" />
     <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4.0.14/dist/vue-router.global.prod.js"></script>
     <script type="module" src="/js/main.js"></script>
@@ -29,29 +24,14 @@
     <header :class="{ dark: store.dark }">
         <nav class="nav">
             <div class="nav-buttons">
-                <router-link class="nav__tab" to="/">
-                    <span class="type-label-lg">List</span>
-                </router-link>
-                <router-link class="nav__tab" to="/leaderboard">
-                    <span class="type-label-lg">Leaderboard</span>
-                </router-link>
-                <router-link class="nav__tab" to="/roulette">
-                    <span class="type-label-lg">Roulette</span>
-                </router-link>
-                <router-link class="nav__cta" to="/submit">
-                    <span class="type-label-lg">Submit Record</span>
-                </router-link>
+                <router-link class="nav__tab" to="/">List</router-link>
+                <router-link class="nav__tab" to="/leaderboard">Leaderboard</router-link>
+                <router-link class="nav__tab" to="/roulette">Roulette</router-link>
+                <router-link class="nav__tab" to="/submit">Submit Record</router-link>
             </div>
-
             <div class="utilities">
-                <button
-                    class="nav__icon"
-                    @click.prevent="store.toggleDark()"
-                >
-                    <img
-                        :src="store.dark ? '/assets/light.svg' : '/assets/dark.svg'"
-                        alt="Theme Toggle"
-                    />
+                <button class="nav__icon" @click.prevent="store.toggleDark()">
+                    <img :src="store.dark ? '/assets/light.svg' : '/assets/dark.svg'" alt="Theme Toggle" />
                 </button>
                 <a class="nav__icon" href="https://discord.gg/Uj8m4rr8WA">
                     <img src="/assets/discord.svg" alt="Discord Logo" />
@@ -59,6 +39,10 @@
             </div>
         </nav>
     </header>
-    <router-view :class="{ dark: store.dark }"></router-view>
+
+    <!-- wrap router-view in a full-width flex container to center the list -->
+    <div class="main-container" style="display:flex; justify-content:center; width:100%;">
+        <router-view :class="{ dark: store.dark }"></router-view>
+    </div>
 </body>
 </html>

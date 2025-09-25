@@ -51,7 +51,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    height: 5rem; /* slightly bigger header */
+    height: 8rem; /* increased header height */
     background-color: rgba(0, 0, 0, 0.7); /* 70% transparency */
     color: var(--color-on-primary);
 }
@@ -74,13 +74,15 @@ header {
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 0 1.5rem;
+    min-width: 14rem; /* wider for 16:9 approximation */
+    padding: 0 2rem;
     background-color: rgba(255, 255, 255, 0.15); /* lighter than header */
     color: var(--color-on-primary);
     text-decoration: none;
     border: none;
     margin: 0;
     transition: background-color 0.2s;
+    border-radius: 0.3rem; /* optional rounded corners for buttons */
 }
 
 .nav-buttons .nav__tab:hover {
